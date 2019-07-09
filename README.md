@@ -10,26 +10,61 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 Write 3 different ways of safely unwrapping and printing the value of `userName`.  If it is nil, print "No name".
 
 - Method one: Check for nil and force unwrap
+```swift
+var test1: String? = "pizza"
+if test1 != nil {
+print(test1)
+print(test1!)
+}
+```
 
 - Method two: Optional binding
+```swift
+var test1: String? = "hello"
+if var test2 = test1{
+print(test2)
+} else {
+print("nothing there")
+}
 
+```
 - Method three: Nil coalescing
-
+```swift
+var check1: String? = "hi"
+let check2 = check1 ?? "hey"
+print(check2)
+```
 
 ## Question 2
 
 Given optional string `backgroundColor`, write code that safely unwraps and prints it. If backgroundColor is nil, give it a value.
 
 `var backgroundColor: String?`
-
+```swift
+var backgroundColor: String?
+if let a = backgroundColor {
+print(a)
+}else {
+backgroundColor = "new value"
+print(backgroundColor!)
+}
+```
 
 ## Question 3
 
 Given an optional width and an optional height of a rectangle, write code that calculates and prints the area. Print an error message if either value is nil.
 
 ```swift
-var width: Double?
-var height: Double?
+var width: Double? 
+var height: Double? 
+
+if let a = width ,
+let b = height {
+print(a*b)
+}else {
+print("error")
+}
+
 ```
 
 
@@ -38,9 +73,18 @@ var height: Double?
 Given the following optional variables `name`, `age` and `height`. Write code so that it prints `name`, `age` and `height` if they all have a value. If any are nil, print an error message. Try using optional binding.
 
 ```swift
-var name: String?
-var age: Int?
-var height: Double?
+var name: String? 
+var age: Int? 
+var height: Double? 
+if let a = name {
+if let b = age {
+if let c = height {
+print("Name:\(a)\nAge: \(b)\nHeight: \(c)")
+}
+}
+}else {
+print("error")
+}
 ```
 
 
@@ -50,8 +94,15 @@ Given the variables `firstName`, `middleName` and `lastName`. Create a variable 
 
 ```swift
 var firstName: String = "Johnny"
-var middleName: String?
+var middleName: String? 
 var lastName: String = "Stone"
+var fullName = ""
+if var mName = middleName {
+fullName = firstName + " " + mName + " " + lastName
+print(fullName)
+} else {
+fullName = firstName + " " + lastName
+print(fullName)}
 ```
 
 
@@ -60,6 +111,15 @@ var lastName: String = "Stone"
 Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` constructor which returns an optional Int `(Int?)`.
 
 `let myIntString = "35"`
+```swift
+let myIntString = "35"
+if var a = Int(myIntString) {
+a += 15
+print(a)
+}
+
+
+```
 
 
 ## Question 7
@@ -67,11 +127,47 @@ Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` c
 Given an optional tuple of optional Ints, write code to safely unwrap the tuple and calculate the sum of its contents that aren't nil.
 
 ```swift
-var scores: (Int?, Int?, Int?)?
+var testCaseOne: (Int?, Int?, Int?)? = (4, nil, 7)
+var testCaseTwo: (Int?, Int?, Int?)? = (nil, nil, 9)
+var testCaseThree: (Int?, Int?, Int?)? = (5, 10, 24)
 
-var testCaseOne = (4, nil, 7)
-var testCaseTwo = (nil, nil, 9)
-var testCaseThree = (5, 10, 24)
+var sum1 = 0
+var sum2 = 0
+var sum3 = 0
+
+if let t1 = testCaseOne, let t2 = testCaseTwo, let t3 = testCaseThree{
+
+if let s0 = testCaseOne?.0{
+sum1 += s0
+}
+if let s0 = testCaseTwo?.0{
+sum2 += s0
+}
+if let s0 = testCaseThree?.0{
+sum3 += s0
+}
+
+if let s1 = testCaseOne?.1{
+sum1 += s1
+}
+if let s1 = testCaseTwo?.1{
+sum2 += s1
+}
+if let s1 = testCaseThree?.1{
+sum3 += s1
+}
+if let s2 = testCaseOne?.2{
+sum1 += s2
+}
+if let s2 = testCaseTwo?.2{
+sum2 += s2
+}
+if let s2 = testCaseThree?.2{
+sum3 += s2
+}
+}
+print(sum1, sum2, sum3)
+
 ```
 
 
@@ -82,7 +178,12 @@ Safely unwrap `tuple` if there’s a non-nil tuple value and print it out.
 ```swift
 var tuple: (Int, Int)?
 if Bool.random() {
- tuple = (5, 3)
+tuple = (5, 3)
+}
+if let a = tuple {
+print(a)
+}else {
+print("nothing")
 }
 ```
 
@@ -92,9 +193,15 @@ if Bool.random() {
 Write code that either doubles `myInt` and then prints it, or prints an error message if myInt is nil.
 
 ```swift
-let myInt: Int?
+var myInt: Int?
 if Bool.random() {
- myInt = 5
+myInt = 5
+}
+if var random = myInt {
+random *= 2
+print(random)
+} else {
+print("error")
 }
 ```
 
@@ -108,7 +215,13 @@ var myDouble: Double?
 let doubleTwo: Double = 5
 
 if Bool.random() {
- myDouble = 12
+myDouble = 12
+}
+if var a = myDouble {
+a *= doubleTwo
+print(a)
+}else {
+print("ERROR")
 }
 ```
 
@@ -121,7 +234,13 @@ Determine if the variable contains a Boolean or nil value. If nil set the variab
 var isTheGreatest: Bool?
 
 if Bool.random() {
- isTheGreatest = true
+isTheGreatest = true
+}
+if var a = isTheGreatest {
+print(a)
+} else {
+isTheGreatest = false
+print(false)
 }
 ```
 
@@ -131,15 +250,27 @@ if Bool.random() {
 Given the code below print the sum of each non-nil element in `myTuple`.
 
  ```swift
-var myTuple: (Int?, Int?, Int?, Int?)
-
-if Bool.random() {
+ var myTuple: (Int?, Int?, Int?, Int?)
+ if Bool.random() {
  myTuple.0 = 5
  myTuple.2 = 14
-} else {
+ } else {
  myTuple.1 = 9
  myTuple.3 = 10
-}
+ }
+ var sum = 0
+ if let t1 = myTuple.0{
+ sum += t1
+ }
+ if let t2 = myTuple.1{
+ sum += t2
+ }
+ if let t3 = myTuple.2{
+ sum += t3
+ }
+ if let t4 = myTuple.3{
+ sum += t4
+ }
 ```
 
 
@@ -159,41 +290,56 @@ Given the helper functions and code below, check to see if your `evolutionarySto
 // Helper Functions
 
 func eStone() -> String {
- let random = Int(arc4random_uniform(5))
- switch random {
- case 0:
-  return "Electric"
- case 1:
-  return "Grass"
- case 2:
-  return "Fire"
- case 3:
-  return "Water"
- default:
-  return "No Stone"
- }
+let random = Int(arc4random_uniform(5))
+switch random {
+case 0:
+return "Electric"
+case 1:
+return "Grass"
+case 2:
+return "Fire"
+case 3:
+return "Water"
+default:
+return "No Stone"
+}
 }
 
 func starterPokemon() -> String {
- let random = Int(arc4random_uniform(5))
- switch random {
- case 0:
-  return "Pikachu"
- case 1:
-  return "Bulbasaur"
- case 2:
-  return "Charmander"
- case 3:
-  return "Squirtle"
- default:
-  return "Not a Pokemon"
- }
+let random = Int(arc4random_uniform(5))
+switch random {
+case 0:
+return "Pikachu"
+case 1:
+return "Bulbasaur"
+case 2:
+return "Charmander"
+case 3:
+return "Squirtle"
+default:
+return "Not a Pokemon"
+}
 }
 
 let pokemon: String?
 var evolutionaryStone: String?
 pokemon = starterPokemon()
 evolutionaryStone = eStone()
+var check = false
+if let a = pokemon ,
+let b = evolutionaryStone {
+let array = [( "Pikachu", "Electric" ),( "Bulbasaur", "Grass" ),( "Charmander", "Fire"),( "Squirtle", "Water" )]
+for i in array {
+if (a,b) == i {
+check = true
+}
+}
+if check {
+print ("\(a) and \(b) is a match, your pokemon has evolved")
+}else {
+print("\(a) and \(b) is not a match, no evolution for you")
+}
+}
 ```
 
 
@@ -208,6 +354,21 @@ if Bool.random() {
  numberOfPeople = 108
 }
 ```
+```swift
+var numberOfPeople: Int?
+if Bool.random() {
+numberOfPeople = 108
+}
+if var a = numberOfPeople {
+if a % 2 == 0 {
+print(a)
+}
+}else {
+print("error")
+}
+
+
+```
 
 
 ## Question 15
@@ -221,6 +382,20 @@ for i in 0..<20 {
     someNumbers.append(Bool.random() ? i : nil)
 }
 ```
+```swift
+var someNumbers: [Int?] = []
+
+var store = 1
+
+for i in 0..<20 {
+someNumbers.append(Bool.random() ? i : nil)
+}
+for i in someNumbers where i != nil {
+store *= i!
+}
+print(store)
+
+```
 
 
 ## Question 16
@@ -231,6 +406,21 @@ Given the array `poorlyFormattedCityNames`, create a new array with the city nam
 let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
 
 Output: ["New York", "Boston", "Chicago", "Los Angeles", "Dallas"]
+```
+```
+let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
+var organizedArray = [String]()
+for i in poorlyFormattedCityNames where i != nil{
+if var a = i {
+a.lowercased()
+organizedArray.append(a.capitalized)
+
+}
+}
+print(organizedArray)
+
+
+
 ```
 
 
@@ -245,6 +435,21 @@ for _ in 0..<20 {
  aBunchOfNumbers.append(Bool.random() ? Int(arc4random_uniform(102)) : nil)
 }
 ```
+```swift
+var aBunchOfNumbers: [Int?] = []
+var evenNums = [Int]()
+for _ in 0..<20 {
+aBunchOfNumbers.append(Bool.random() ? Int(arc4random_uniform(102)) : nil)
+}
+for i in aBunchOfNumbers where i != nil {
+if var a = i {
+if a % 2 == 0 {
+evenNums += [a]
+}
+}}
+print(evenNums)
+
+```
 
 
 ## Question 18
@@ -252,8 +457,17 @@ for _ in 0..<20 {
 Given the following array of zip codes as strings, write code that turns them into an array of Ints.
 
 `let zipCodeStrings = ["11377", "11101", "11373", "10014", "10003", "11223"]`
+```swift
+let zipCodeStrings = ["11377", "11101", "11373", "10014", "10003", "11223"]
+var arrayInts = [Int]()
+for i in zipCodeStrings {
+if var a = Int(i) {
+arrayInts += [a]
+}
+}
+print(arrayInts)
 
-
+```
 ## Question 19
 
 Some students were asked some questions about their favorite foods and colors and the answers were stored in an array `studentInfo`.
@@ -265,7 +479,10 @@ Some students were asked some questions about their favorite foods and colors an
 - Create a new array of type `[(String, String, String)]` that contains the students with both favorite colors and foods.
 
 `let studentInfo: [(String, String?, String?)] = [("Bill", "Burgers", "Blue"), ("Rita", nil, "Red"), ("Peter", "Pizza", "Purple"), ("Sarah", "Sandwiches", nil), ("Jeff", nil, nil), ("Lucy", "Leftovers", "Lilac"), ("Mike", "Meat", "Mauve"), ("Gemma", nil, "Green")]`
+```
 
+
+```
 
 ## Question 20
 
@@ -283,11 +500,19 @@ Given an optional array of optional tuples of optional UInt8s,
 Consider the following nested optional. It corresponds to a number inside a box inside a box inside a box.
 
 - Fully force unwrap and print number.
+```swift
+let number: Int??? = 10
+print(number!!!)
 
+```
 - Optionally bind and print number.
+```swift
+let number: Int??? = 10
 
-`let number: Int??? = 10`
-
+if let a = number , let b = a , let c = b {
+print(c)
+}
+```
 
 ## Question 22
 
@@ -296,6 +521,29 @@ Given an Array of Optional Strings, write code that concatenates all non-nil val
 `let monkeyingAround = ["orangutan", "apes",nil, "monkeys", "gorillas", "lemurs", nil]`
 
 output: `"apesmonkeyslemurs"`
+```swift
+let monkeyingAround = ["orangutan", "apes",nil, "monkeys", "gorillas", "lemurs", nil]
+var vowels = ["a","e","o","i","u"]
+var holder = 0
+var finalAns = ""
+for i in monkeyingAround {
+if var a = i {
+for b in a {
+if vowels.contains(String(b)){
+holder += 1
+}
+}
+if holder < 3 {
+finalAns += a
+}
+
+}
+holder = 0
+}
+print(finalAns)
+
+
+```
 
 
 ## Question 23
