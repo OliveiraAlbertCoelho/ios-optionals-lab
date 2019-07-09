@@ -407,7 +407,7 @@ let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago",
 
 Output: ["New York", "Boston", "Chicago", "Los Angeles", "Dallas"]
 ```
-```
+```swift
 let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
 var organizedArray = [String]()
 for i in poorlyFormattedCityNames where i != nil{
